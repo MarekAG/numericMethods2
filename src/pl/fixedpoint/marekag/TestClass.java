@@ -13,6 +13,24 @@ public class TestClass {
 		// flag for "while" loop with "try-catch" block
 		Boolean isApproxWrong = false;
 		NumericMethods fp;
+		Double x0 = null;
+
+		do {
+			System.out.println("Podaj x0: ");
+			try {
+				double temp = Double.parseDouble(scanner.nextLine());
+				x0 = temp;
+			} catch (NumberFormatException e) {
+				System.out.println("Podaj liczbe!");
+			}
+			
+		} while(x0 == null);
+
+		// TODO: jeśli podamy za duże x0 program w kółko pyta o dokładność
+		// pewnie getRoot rzuca wyjątkiem @NumberFormatException lub (bardziej prawdopodobne
+		// jakimś dziedziczącym po nim
+		// coś się psuje przy liczeniu pierwiastka może?
+
 		do {
 			try {
 
@@ -21,12 +39,13 @@ public class TestClass {
 				// check if user typed integer
 				try {
 					fp = new FixedPoint(scanner.nextInt());
+
 				} catch (Exception e) {
 					// if not check if he typed double
 					fp = new FixedPoint(Double.parseDouble(scanner.nextLine()));
 				}
 
-				Double answer = fp.getRoot(5.0);
+				Double answer = fp.getRoot(x0);
 
 				if (answer != null) {
 					System.out.println("Przybliżona wartość pierwiastka: "
