@@ -14,19 +14,20 @@ public class FixedPoint implements NumericMethods {
 		this.epsilon = epsilon;
 	}
 
-	public FixedPoint(Double epsilonDouble) {
-		int epsilonInt = 0;
+//	public FixedPoint(Double epsilonDouble,  Double x0) {
+//		int epsilonInt = 0;
 
-		while (!epsilonDouble.equals(1.0)) {
-			if (epsilonDouble >= 1.0 || epsilonDouble <= 0.0)
-				throw new IllegalArgumentException(
-						"Dokładność musi być z przedziału (0,1)");
-			epsilonInt++;
-			epsilonDouble *= 10.0;
-		}
+//		while (!epsilonDouble.equals(1.0)) {
+//			if (epsilonDouble >= 1.0 || epsilonDouble <= 0.0)
+//				return;
+//				throw new IllegalArgumentException(
+//						"Dokładność musi być z przedziału (0,1)");
+//			epsilonInt++;
+//			epsilonDouble *= 10.0;
+//		}
 
-		this.epsilon = epsilonInt;
-	}
+//		this.epsilon = epsilonInt;
+//	}
 
 	public int getNrOfSteps() {
 		return nrOfSteps;
