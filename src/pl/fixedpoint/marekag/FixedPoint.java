@@ -64,7 +64,17 @@ public class FixedPoint implements NumericMethods {
 		return presentRounded;
 	}
 
-	private double rootThird(Double number) {
+    @Override
+    public Double getResult(int precision) {
+        return null;
+    }
+
+    @Override
+    public Double getResult() {
+        return null;
+    }
+
+    private double rootThird(Double number) {
 		return Math.pow(Math.exp(1 / FUNCTION[0]), Math.log(number));
 	}
 

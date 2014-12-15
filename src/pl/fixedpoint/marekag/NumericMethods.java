@@ -4,4 +4,6 @@ public interface NumericMethods {
 	
 	public int getNrOfSteps();
 	public Double getRoot(Double firstApprox);
+    public Double getResult(int precision);
+    public Double getResult();
 }

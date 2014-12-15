@@ -10,7 +10,7 @@ public class UserMenu {
 	public static void main(String[] args) {
 
 		scanner = new Scanner(System.in);
-
+        System.out.println("Badana funkcja to: " + UserData.getFunction().toString());
 		do {
 			System.out.println("Podaj x0: ");
 			try {
@@ -27,15 +27,22 @@ public class UserMenu {
 		} while (UserData.getX0() == null);
 
 		do {
+
 			System.out.println("Podaj x1: ");
 			try {
 				double temp = Double.parseDouble(scanner.nextLine());
 				UserData.setX1(temp);
+                if(Validator.validateNewtonStartPoints(UserData.getX0(), UserData.getX1(), UserData.getFunction())) {
+                    System.out.println("Niepoprawnie dobrane punkty startowe, punkty nie mogą być takie same i wartosci"
+                            + " funkcji dla tych punktów musza mieć przeciwne znaki! x0=" +
+                            UserData.getFunction().evaluate(UserData.getX0()) + " x2 = " +
+                            UserData.getFunction().evaluate(UserData.getX1()));
+                }
 			} catch (NumberFormatException e) {
 				System.out.println("Podaj liczbe!");
 			}
 
-		} while (UserData.getX1() == null);
+		} while (UserData.getX1() == null || Validator.getLastResult());
 		Double temp = null;
 		do {
 			System.out
@@ -74,19 +81,19 @@ public class UserMenu {
 		}
 		
 		//TODO: Implement NewtonMethod to match this prints:
-	/*	
-		NumericMethods newtonMethod = new NewtonMethod(Double UserData.getX0(), Double UserData.getX1());
-		Double newtonMethodValue = fixedPoint.getRoot(UserData.getX0());
+
+		NumericMethods newtonMethod = new NewtonAlghoritm(UserData.getFunction(), UserData.getX0(),  UserData.getX1(), UserData.getEpsilon());
+		//Double newtonMethodValue = fixedPoint.getRoot(UserData.getX0());
 		
 		System.out.println("Metoda iteracji prostych: ");
-		if (newtonMethodValue != null) {
+		if (newtonMethod.getResult() != null) {
 			System.out.println("Przybliżona wartość pierwiastka: "
-					+ newtonMethodValue);
+					+ newtonMethod.getResult(UserData.getEpsilon()));
 			System.out.println("Ilość kroków: " + newtonMethod.getNrOfSteps());
 		} else {
 			System.out.println("Niestety nie udało się w 100 krokach");
 		}
-*/
+
 	}
 
 }
