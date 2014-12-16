@@ -80,12 +80,11 @@ public class UserMenu {
 			System.out.println("Niestety nie udało się w 100 krokach");
 		}
 		
-		//TODO: Implement NewtonMethod to match this prints:
 
 		NumericMethods newtonMethod = new NewtonAlghoritm(UserData.getFunction(), UserData.getX0(),  UserData.getX1(), UserData.getEpsilon());
 		//Double newtonMethodValue = fixedPoint.getRoot(UserData.getX0());
 		
-		System.out.println("Metoda iteracji prostych: ");
+		System.out.println("Metoda siecznych: ");
 		if (newtonMethod.getResult() != null) {
 			System.out.println("Przybliżona wartość pierwiastka: "
 					+ newtonMethod.getResult(UserData.getEpsilon()));
