@@ -1,5 +1,8 @@
 package pl.fixedpoint.marekag;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Created by Jakub on 2014-12-08.
  */
@@ -19,7 +22,8 @@ public class NewtonAlghoritm implements NumericMethods{
         this.polynomial = polynomial;
         this.x1 = x1;
         this.x2 = x2;
-        this.epsilon = epsilon;
+        this.epsilon = 1/ Math.pow(10, epsilon );
+
         this.maxIter = 1000;
     }
 
@@ -28,7 +32,7 @@ public class NewtonAlghoritm implements NumericMethods{
         this.polynomial = polynomial;
         this.x1 = x1;
         this.x2 = x2;
-        this.epsilon = epsilon;
+        this.epsilon = 1/(10 * epsilon);
         this.maxIter = maxIter;
     }
 
@@ -52,15 +56,14 @@ public class NewtonAlghoritm implements NumericMethods{
         x2_value = polynomial.evaluate(tmp_x2);
         for(int i=0; i<maxIter;i++) {
 
-             tmp_x3 = tmp_x1 - x2_value * (tmp_x1 - tmp_x2) / (x1_value - x2_value) ;
+             tmp_x3 = tmp_x2 - (x2_value * (tmp_x2 - tmp_x1) / (x2_value - x1_value) ) ;
              x3_value = polynomial.evaluate(tmp_x3);
 
-            double test = Math.abs(x3_value);
+
             if(Math.abs(x3_value) < epsilon){ counter = i; return tmp_x3; }
 
             tmp_x2 = tmp_x1;
             tmp_x1 = tmp_x3;
-
 
             x2_value = x1_value;
             x1_value = x3_value;
@@ -87,10 +90,16 @@ public class NewtonAlghoritm implements NumericMethods{
 
     @Override
     public Double getResult(int precision) {
-        double _result = compute();
-        _result = Math.round(_result *  Math.pow(10, precision));
-        _result = _result /  Math.pow(10, precision);
-        return _result;
+
+        return compute();
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_DOWN);
+        return bd.doubleValue();
     }
 
 }

@@ -87,7 +87,7 @@ public class UserMenu {
 		System.out.println("Metoda siecznych: ");
 		if (newtonMethod.getResult() != null) {
 			System.out.println("Przybliżona wartość pierwiastka: "
-					+ newtonMethod.getResult(UserData.getEpsilon()));
+					+  String.format("%."+ UserData.getEpsilon() +"f", newtonMethod.getResult(UserData.getEpsilon())));
 			System.out.println("Ilość kroków: " + newtonMethod.getNrOfSteps());
 		} else {
 			System.out.println("Niestety nie udało się w 100 krokach");
