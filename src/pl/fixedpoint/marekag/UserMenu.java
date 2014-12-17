@@ -33,9 +33,9 @@ public class UserMenu {
 				double temp = Double.parseDouble(scanner.nextLine());
 				UserData.setX1(temp);
                 if(Validator.validateNewtonStartPoints(UserData.getX0(), UserData.getX1(), UserData.getFunction())) {
-                    System.out.println("Niepoprawnie dobrane punkty startowe, punkty nie mogą być takie same i wartosci"
-                            + " funkcji dla tych punktów musza mieć przeciwne znaki! x0=" +
-                            UserData.getFunction().evaluate(UserData.getX0()) + " x2 = " +
+                    System.out.println("Niepoprawnie dobrane punkty startowe, punkty nie mogą być takie same i wartosci\n"
+                            + "funkcji dla tych punktów musza mieć przeciwne znaki! f(x0)=" +
+                            UserData.getFunction().evaluate(UserData.getX0()) + " f(x1) = " +
                             UserData.getFunction().evaluate(UserData.getX1()));
                 }
 			} catch (NumberFormatException e) {
@@ -82,9 +82,8 @@ public class UserMenu {
 		
 
 		NumericMethods newtonMethod = new NewtonAlghoritm(UserData.getFunction(), UserData.getX0(),  UserData.getX1(), UserData.getEpsilon());
-		//Double newtonMethodValue = fixedPoint.getRoot(UserData.getX0());
-		
-		System.out.println("Metoda siecznych: ");
+	
+		System.out.println("Metoda stycznych: ");
 		if (newtonMethod.getResult() != null) {
 			System.out.println("Przybliżona wartość pierwiastka: "
 					+  String.format("%."+ UserData.getEpsilon() +"f", newtonMethod.getResult(UserData.getEpsilon())));

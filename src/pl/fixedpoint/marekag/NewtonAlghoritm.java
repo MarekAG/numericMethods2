@@ -13,11 +13,8 @@ public class NewtonAlghoritm implements NumericMethods{
     private double epsilon;
     private int maxIter;
     private int counter;
-    private int result;
 
     public NewtonAlghoritm(Polynomial polynomial, double x1, double x2, double epsilon) {
-
-
 
         this.polynomial = polynomial;
         this.x1 = x1;
