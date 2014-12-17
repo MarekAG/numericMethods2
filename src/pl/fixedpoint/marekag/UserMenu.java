@@ -83,7 +83,7 @@ public class UserMenu {
 
 		NumericMethods newtonMethod = new NewtonAlghoritm(UserData.getFunction(), UserData.getX0(),  UserData.getX1(), UserData.getEpsilon());
 	
-		System.out.println("Metoda stycznych: ");
+		System.out.println("Metoda siecznych: ");
 		if (newtonMethod.getResult() != null) {
 			System.out.println("Przybliżona wartość pierwiastka: "
 					+  String.format("%."+ UserData.getEpsilon() +"f", newtonMethod.getResult(UserData.getEpsilon())));

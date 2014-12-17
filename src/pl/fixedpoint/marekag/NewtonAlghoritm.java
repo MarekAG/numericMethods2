@@ -53,6 +53,9 @@ public class NewtonAlghoritm implements NumericMethods{
         x2_value = polynomial.evaluate(tmp_x2);
         for(int i=0; i<maxIter;i++) {
 
+        	// zmienić nazwę z Metoda Newtona na siecznych
+        	// sprawdź czy nie dzielisz przez 0
+        	
              tmp_x3 = tmp_x2 - (x2_value * (tmp_x2 - tmp_x1) / (x2_value - x1_value) ) ;
              x3_value = polynomial.evaluate(tmp_x3);
 
