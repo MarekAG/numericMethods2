@@ -81,15 +81,20 @@ public class UserMenu {
 		}
 		
 
-		NumericMethods newtonMethod = new NewtonAlghoritm(UserData.getFunction(), UserData.getX0(),  UserData.getX1(), UserData.getEpsilon());
-	
+		NumericMethods newtonMethod = new SecantMethod(UserData.getFunction(), UserData.getX0(),  UserData.getX1(), UserData.getEpsilon());
+		//Double newtonMethodValue = fixedPoint.getRoot(UserData.getX0());
+		
 		System.out.println("Metoda siecznych: ");
-		if (newtonMethod.getResult() != null) {
-			System.out.println("Przybliżona wartość pierwiastka: "
-					+  String.format("%."+ UserData.getEpsilon() +"f", newtonMethod.getResult(UserData.getEpsilon())));
-			System.out.println("Ilość kroków: " + newtonMethod.getNrOfSteps());
-		} else {
-			System.out.println("Niestety nie udało się w 100 krokach");
+		try {
+			if (newtonMethod.getResult() != null) {
+				System.out.println("Przybliżona wartość pierwiastka: "
+						+ String.format("%." + UserData.getEpsilon() + "f", newtonMethod.getResult(UserData.getEpsilon())));
+				System.out.println("Ilość kroków: " + newtonMethod.getNrOfSteps());
+			} else {
+				System.out.println("Niestety nie udało się w 100 krokach");
+			}
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
 		}
 
 	}

@@ -6,15 +6,18 @@ import java.math.RoundingMode;
 /**
  * Created by Jakub on 2014-12-08.
  */
-public class NewtonAlghoritm implements NumericMethods{
+public class SecantMethod implements NumericMethods{
     private Polynomial polynomial;
     private double x1;
     private double x2;
     private double epsilon;
     private int maxIter;
     private int counter;
+    private int result;
 
-    public NewtonAlghoritm(Polynomial polynomial, double x1, double x2, double epsilon) {
+    public SecantMethod(Polynomial polynomial, double x1, double x2, double epsilon) {
+
+
 
         this.polynomial = polynomial;
         this.x1 = x1;
@@ -24,7 +27,7 @@ public class NewtonAlghoritm implements NumericMethods{
         this.maxIter = 1000;
     }
 
-    public NewtonAlghoritm(Polynomial polynomial, int x1, int x2, double epsilon, int maxIter) throws Exception {
+    public SecantMethod(Polynomial polynomial, int x1, int x2, double epsilon, int maxIter) throws Exception {
 
         this.polynomial = polynomial;
         this.x1 = x1;
@@ -46,17 +49,17 @@ public class NewtonAlghoritm implements NumericMethods{
 //    f(x2) = 4,5
 //            | f4,5) | = 4,5 < eps
 
-    private double compute() {
+    private double compute() throws Exception {
         double x1_value, x2_value, x3_value;
         double tmp_x1=x1, tmp_x2=x2, tmp_x3 = 0;
         x1_value = polynomial.evaluate(tmp_x1);
         x2_value = polynomial.evaluate(tmp_x2);
         for(int i=0; i<maxIter;i++) {
-
-        	// zmienić nazwę z Metoda Newtona na siecznych
-        	// sprawdź czy nie dzielisz przez 0
-        	
-             tmp_x3 = tmp_x2 - (x2_value * (tmp_x2 - tmp_x1) / (x2_value - x1_value) ) ;
+         Double tmp = x2_value - x1_value;
+            if(Math.abs(tmp) < 1/ Math.pow(10, UserData.getEpsilon() )) {
+                throw new Exception("Blad: wystapiło dzielenie przez 0 (przybliżenie zera użyte w obliczeniach: " + 1/ Math.pow(10, UserData.getEpsilon()));
+            }
+             tmp_x3 = tmp_x2 - (x2_value * (tmp_x2 - tmp_x1) / tmp ) ;
              x3_value = polynomial.evaluate(tmp_x3);
 
 
@@ -84,12 +87,12 @@ public class NewtonAlghoritm implements NumericMethods{
     }
 
     @Override
-    public Double getResult() {
+    public Double getResult() throws Exception {
         return compute();
     }
 
     @Override
-    public Double getResult(int precision) {
+    public Double getResult(int precision) throws Exception {
 
         return compute();
     }
